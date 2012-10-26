@@ -15,7 +15,7 @@ Slideshow for SilverStripe CMS based on Zurb Foundation Orbit
 
 * Install DataObjectManager < http://silverstripe.org/dataobjectmanager-module/ > and Uploadify < http://silverstripe.org/uploadify-module/ >
 
-* Include the foundation framework < http://http://foundation.zurb.com/ > in your project, including orbit.js
+* Include the foundation framework < http://foundation.zurb.com/ > in your project, including orbit.js
 
 * Put the orbit folder inside your project
 

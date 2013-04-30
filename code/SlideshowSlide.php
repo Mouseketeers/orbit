@@ -2,7 +2,9 @@
 class SlideshowSlide extends DataObject {
 	static $db = array(
    		'Content' => 'HTMLText',
-   		'LinkTitle' => 'Varchar(255)'
+   		'LinkTitle' => 'Varchar(255)',
+		'StartDate' => 'Date',
+		'EndDate' => 'Date'
 	);
 	static $has_one = array (
 		'Page' => 'Page',
@@ -16,6 +18,14 @@ class SlideshowSlide extends DataObject {
 	function getCMSFields_forPopup() {
 		$fields = new FieldSet();
 		$fields->push(new ImageUploadField('SlideImage', _t('SlideshowSlide.IMAGE','Image')));
+		if (Slideshow::$enableSchedulation) {
+			$start_date_field = new DateField('StartDate', 'Opitional start date (selected date included)');
+			$start_date_field->setConfig('showcalendar',true);
+			$fields->push($start_date_field);
+			$end_date_field = new DateField('EndDate', 'Optional end date (selected date excluded)');
+			$end_date_field->setConfig('showcalendar',true);
+			$fields->push($end_date_field);
+		}
 		if (Slideshow::$enableHTMLContentEditor) {
 			$fields->push(new SimpleTinyMCEField('Content', _t('SlideshowSlide.CONTENT','Text'), 'Text'));
 		}

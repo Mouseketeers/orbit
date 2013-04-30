@@ -1,6 +1,8 @@
 <?php
 class Slideshow extends DataObjectDecorator {
-	public static $enableHTMLContentEditor = true;
+	public static $enableHTMLContentEditor = false;
+	public static $enableSchedulation = false;
+	
 	function extraStatics() {
 		return array(
 			'has_many' => array(
@@ -21,5 +23,12 @@ class Slideshow extends DataObjectDecorator {
 		);
 		$image_manager->copyOnImport = false;
 		$fields->addFieldToTab('Root.Content.Slideshow',$image_manager);
+	}
+	public function CurrentSlideshowSlides() {
+		$current_slides = DataObject::get(
+			'SlideshowSlide',
+			'PageID = '.$this->owner->ID.' AND (StartDate IS NULL OR StartDate <= NOW()) AND (EndDate IS NULL OR EndDate > NOW())'
+		);
+		return $current_slides;
 	}
 }

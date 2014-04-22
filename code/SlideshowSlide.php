@@ -16,6 +16,16 @@ class SlideshowSlide extends DataObject {
 	function canDelete() {
 		return Permission::check('CMS_ACCESS_CMSMain');
 	}
+	function getThumbnailOfSlideImage() {
+		return $this->SlideImage()->SetHeight(60);
+
+	}
+	function getContentSummary() {
+		return $this->dbObject('Content')->LimitCharacters(80);
+	}
+	function getVisibility() {
+		return $this->Inactive ? 'Inactive' : 'Active';
+	}
 	function getCMSFields_forPopup() {
 		$fields = new FieldSet();
 		$fields->push(new ImageUploadField('SlideImage', _t('SlideshowSlide.IMAGE','Image')));

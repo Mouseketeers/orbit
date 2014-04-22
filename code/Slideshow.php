@@ -13,13 +13,16 @@ class Slideshow extends DataObjectDecorator {
 		);
 	}
 	function updateCMSFields(&$fields) {
-		$image_manager = new ImageDataObjectManager (
+		$image_manager = new DataObjectManager (
 			$this->owner,
 			'SlideshowSlides',
 			'SlideshowSlide',
-			'SlideImage',
-			array(),
-			'getCMSFields_forPopup'
+			array(
+				'ThumbnailOfSlideImage' => 'Image',
+				'ContentSummary' => 'Content',
+				'Visibility' => 'Status'
+			),
+			'getCMSFields_forPopup'			
 		);
 		$image_manager->copyOnImport = false;
 		$fields->addFieldToTab('Root.Content.Slideshow',$image_manager);

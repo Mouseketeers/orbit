@@ -24,11 +24,22 @@ class Slideshow extends DataObjectDecorator {
 		$image_manager->copyOnImport = false;
 		$fields->addFieldToTab('Root.Content.Slideshow',$image_manager);
 	}
-	public function CurrentSlideshowSlides() {
+	public function CurrentSlideshowSlides() { // deprecated - use ManagedSlideshowSlides
 		$current_slides = DataObject::get(
 			'SlideshowSlide',
 			'PageID = '.$this->owner->ID.' AND (StartDate IS NULL OR StartDate <= NOW()) AND (EndDate IS NULL OR EndDate > NOW())'
 		);
 		return $current_slides;
+	}
+	public function ManagedSlideshowSlides() {
+		$filter = 'PageID = '.$this->owner->ID.' AND Inactive = 0';
+		if(self::$enableSchedulation) {
+			$filter .= ' AND (StartDate IS NULL OR StartDate <= NOW()) AND (EndDate IS NULL OR EndDate > NOW())';
+		}
+		$slides = DataObject::get(
+			'SlideshowSlide',
+			$filter
+		);
+		return $slides;
 	}
 }

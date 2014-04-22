@@ -4,7 +4,8 @@ class SlideshowSlide extends DataObject {
    		'Content' => 'HTMLText',
    		'LinkTitle' => 'Varchar(255)',
 		'StartDate' => 'Date',
-		'EndDate' => 'Date'
+		'EndDate' => 'Date',
+		'Inactive' => 'Boolean'
 	);
 	static $has_one = array (
 		'Page' => 'Page',
@@ -36,6 +37,8 @@ class SlideshowSlide extends DataObject {
 		$PageDropDown->setEmptyString('-- None --');
 		$fields->push($PageDropDown);
 		$fields->push(new TextField('LinkTitle', 'Link label'));
+		$fields->push(new CheckboxField('Inactive', 'Deactivate this slide'));
+		$fields->push( new LiteralField('DOM-fix','<div style="height:35px">&nbsp;</div>'));
    		return $fields;
 	}
 }

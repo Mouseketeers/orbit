@@ -32,4 +32,4 @@ Slideshow for SilverStripe CMS based on Zurb Foundation Orbit
 
 * To modify the template HTML copy the Slideshow.ss file to your current theme and flush your projekt (e.g. www.example.com?flush=all)
 
-* To configure the slideshow, copy the Slideshow.ss and slideshow.js files to your current theme, modify the path to your new javascript file in the Slideshow.ss and modify the configuration of the slideshow in your slideshow.js file. For configuration options see < http://foundation.zurb.com/docs/orbit.php >
+* To configure the slideshow edit the data-options in the Slideshow.ss file. For configuration options see < http://foundation.zurb.com/docs/v/4.3.2/components/orbit.html >

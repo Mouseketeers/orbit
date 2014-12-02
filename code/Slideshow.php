@@ -20,6 +20,7 @@ class Slideshow extends DataObjectDecorator {
 			array(
 				'ThumbnailOfSlideImage' => 'Image',
 				'ContentSummary' => 'Content',
+				'LinkInfo' => 'Link',
 				'Visibility' => 'Status'
 			),
 			'getCMSFields_forPopup'			
